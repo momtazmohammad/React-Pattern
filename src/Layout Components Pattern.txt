@@ -1,0 +1,15 @@
+we can easily reuse layouts based on the Grid system or Flex Box model.
+
+const PageLayout = ({ children }) => {
+  return (
+    <>
+      <Header />
+      <main>{children}</main>
+      <Footer />
+    </>
+  );
+};
+
+const HomePage = () => {
+  return <PageLayout>{/* Page content goes here */}</PageLayout>;
+};

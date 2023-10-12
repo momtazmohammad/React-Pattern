@@ -1,0 +1,2 @@
+https://medium.com/@vitorbritto/react-design-patterns-compound-component-pattern-ec247f491294#:~:text=Compound%20components%20are%20a%20pattern,state%20and%20handle%20logic%20together.
+to avoid prop drilling and write elegant components with implicit state sharing
