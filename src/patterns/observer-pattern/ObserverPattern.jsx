@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Snack from "../../components/Snack";
-import Button from "../../components/Button";
+import Button from "../../components/button/Button";
+
 
 function ObserverPattern() {
     class Observable {
