@@ -2,7 +2,7 @@
     min-width: 100px;
     background-color:var(--primarybg) ;
     border: none;
-    color: white;
+    color: var(--primary);
     padding: 12px 16px;
     font-size: 16px;
     cursor: pointer;

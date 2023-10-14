@@ -1,2 +1,3 @@
-https://medium.com/@vitorbritto/react-design-patterns-compound-component-pattern-ec247f491294#:~:text=Compound%20components%20are%20a%20pattern,state%20and%20handle%20logic%20together.
 to avoid prop drilling and write elegant components with implicit state sharing
+https://medium.com/@vitorbritto/react-design-patterns-compound-component-pattern-ec247f491294#:~:text=Compound%20components%20are%20a%20pattern,state%20and%20handle%20logic%20together.
+https://dev.to/vikas2426/compound-components-in-react-14o2#:~:text=Compound%20components%20are%20a%20pattern,responsible%20for%20rendering%20the%20UI.
