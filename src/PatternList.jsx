@@ -12,6 +12,9 @@ import { CallProxy } from "./patterns/proxyPattern.jsx";
 import { ProviderPattern } from "./patterns/provider/ProviderPattern.jsx";
 import ObserverPattern from "./patterns/observer-pattern/ObserverPattern.jsx";
 import RenderPropsPattern from './patterns/RenderPropsPattern.jsx';
+import CompoundComponent from './patterns/compoundComponent/CompoundComponent.jsx';
+import ListPattern from './patterns/listPattern/ListPattern.jsx';
+import StepperOnboardingPattern from './patterns/stepperOnboarding-pattern/StepperOnboardingPattern.jsx';
 
 function PatternList() {
 
@@ -130,6 +133,33 @@ function PatternList() {
       content: (
         <div style={{ margin: "10px" }}>
           <RenderPropsPattern />
+        </div>
+      ),
+    },
+    {
+      value: "13",
+      title: "Compound Component Pattern",
+      content: (
+        <div style={{ margin: "10px" }}>
+          <CompoundComponent />
+        </div>
+      ),
+    },        
+    {
+      value: "14",
+      title: "Stepper Loading Pattern",
+      content: (
+        <div style={{ margin: "10px" }}>
+          <StepperOnboardingPattern />
+        </div>
+      ),
+    },        
+    {
+      value: "15",
+      title: "List Pattern",
+      content: (
+        <div style={{ margin: "10px" }}>
+          <ListPattern />
         </div>
       ),
     },        

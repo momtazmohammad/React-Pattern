@@ -44,3 +44,9 @@ Advantages of OCP:
 
 cqrs pattern
 sepration of concern , single responsiblity
+
+Gangs of Four (GoF) Design Patterns is the collection of 23 design patterns from the book “Design Patterns: Elements of Reusable Object-Oriented Software”. This book was first published in 1994 and it's one of the most popular books to learn design patterns.
+https://paulonteri.com/thoughts/atomic-design-react
+
+not using index as key in map for better performance
+React Conditional Rendering Design Pattern
