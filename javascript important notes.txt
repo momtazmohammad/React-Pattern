@@ -1,0 +1,446 @@
+Linkedin skill assessment
+
+JavaScript only hoists declarations, not initializations.
+Hoisting applies to variable declarations and to function declarations.Functions defined using an expression are not hoisted.
+Arrow functions are not hoisted. They must be defined before they are used.
+class declarations are not hoisted.
+
+let and const Variables declared inside a { } block cannot be accessed from outside the block,
+JavaScript has 3 types of scope:Block scope,Function scope,Global scope
+Global variables defined with the let keyword do not belong to the window object
+Variables created without a declaration keyword (var, let, or const) are always global, even if they are created inside a function (just for var).
+
+carName = "Volvo";let carName; cause ReferenceError
+It is a common practice to declare objects and array with the const keyword.An array declared with const cannot be reassigned.
+
+In an object method, this refers to the object.
+In an event, this refers to the element that received the event.
+In a function definition, this refers to the "owner" of the function.
+In a function, in strict mode, this is undefined.
+In regular functions ,this keyword represented the object that called the function, which could be the window, the document, a button or whatever.
+hello = function() {
+  document.getElementById("demo").innerHTML += this;
+}
+With arrow functions the this keyword always represents the object that defined the arrow function.
+hello = () => { // in this case allways window no matter who's calling
+  document.getElementById("demo").innerHTML += this;
+}
+
+Arrays are a special type of objects. 
+Adding elements with high indexes can create undefined "holes" in an array
+How to Recognize an Array(typeof array return object):Array.isArray(fruits);fruits instanceof Array;
+
+Array methods
+fruits.sort(); //By default, the sort() function sorts values as strings.You can fix this by providing a compare function: points.sort(function(a, b){return a - b});
+sort an array descending:points.sort(function(a, b){return b - a});
+Sorting an Array in Random Order:points.sort(function(){return 0.5 - Math.random()});
+
+Math.max.apply(null, arr);
+numbers.reduce(myFunction):function parameters total, value, index
+The every() method check if all array values pass a test.
+The some() method check if some array values pass a test.
+fruits.includes("Mango");
+fruits.entries(): returns an Array Iterator object with key/value pairs
+
+forEach can work for array/set/map
+
+Iterables are iterable objects (like Arrays/string/Set/Map).
+Iterable objects are objects that can be iterated over with for..of.Technically, iterables must implement the Symbol.iterator method.
+myNumbers = {};
+// Make it Iterable
+myNumbers[Symbol.iterator] = function() {
+  let n = 0;
+  done = false;
+  return {
+    next() {
+      n += 10;
+      if (n == 100) {done = true}
+      return {value:n, done:done};
+    }
+  };
+}
+for (const num of myNumbers) {
+  // Any Code Here
+  console.log(num)
+}
+
+myObj = {code:10,name:"jhon"};
+myObj[Symbol.iterator] = function() {
+  let n = 0;
+  let keys=Object.keys(myObj)
+  done = false;
+  return {
+    next() {
+      value={key:keys[n],value:myObj[keys[n]]}
+      n += 1;
+      if (n > keys.length) {done = true}
+      return {value, done};
+    }
+  };
+}
+for (const value of myObj) {
+  // Any Code Here
+  console.log(value)
+}
+
+
+let iterator = myNumbers[Symbol.iterator]();
+while (true) {
+  const result = iterator.next();
+  if (result.done) break;
+  // Any Code Here
+}
+
+typeof function () {}  // Returns "function" ,typeof null   // Returns "object" , typeof myCar   // Returns "undefined" 
+
+primitive types:string ,number ,boolean ,undefined
+
+The constructor property returns the constructor function for all JavaScript variables."John".constructor // Returns function String()  {[native code]}
+You can check the constructor property to find out if an object is an Array (contains the word "Array"):myArray.constructor.toString().indexOf("Array") > -1;// myArray.constructor === Array
+null == undefined          // true
+"5" + null  // returns "5null"   because null is converted to "null"
+
+A JavaScript class is not an object.It is a template for JavaScript objects.
+class ClassName {
+  constructor() { ... }
+  method_1() { ... }
+  method_2() { ... }
+  method_3() { ... }
+}
+
+It is a common mistake to forget that switch statements use strict comparison:
+
+return
+  a * power; //The function will return undefined!
+
+access fullName as a function: person.fullName()
+access fullName as a property: person.fullName  get fullName() {//code}
+
+Object Constructors
+function Person(first, last) {
+  this.firstName = first;
+  this.lastName = last;
+}
+const myFather = new Person("John", "Doe");
+myFather.nationality = "English"; //The property will be added to myFather. (Not to any other person objects).
+You cannot add a new property to an object constructor (Person.nationality = "English" is not working)
+Person.prototype.nationality = "English" //Adding Properties and Methods to Objects
+Prototype: It is a special object which means it holds shared attributes and behaviors of instances.
+
+__proto__ in javascript implement inheritance
+const obj = {
+    method: function() {
+        console.log("method in obj")
+    }
+}
+const obj2 = {}
+obj2.__proto__ = obj
+obj2.method()
+
+class C {}
+class D {
+    meth() {
+        console.log("method on D")
+    }
+}
+const d = new D()
+const c = new C()
+c.__proto__ = d
+c.meth()
+
+static properties cannot be inherited
+
+class D {
+    static stMeth() {
+        l("static method stMeth on D")
+    }
+    meth() {
+        l("method on D")
+    }
+    static staticProp = 78
+}
+is transpiled to this:
+
+function D() {}
+D.prototype.meth = function () {
+        l("method on D")
+}
+D.stMEth = function() {
+        l("static method stMeth on D")    
+}
+D.staticProp = 78
+
+
+a=1000000;a.toLocaleString("fa",{style:'currency', currency:"IRR"})
+
+typeof functions returns "function" .But, JavaScript functions can best be described as objects.
+they have both properties and methods.
+
+If a function changes an object property, it changes the original value.
+
+Methods like call(), apply(), and bind() can refer this to any object:
+
+const person = {
+  fullName: function() {
+    return this.firstName + " " + this.lastName;
+  }
+}
+const person1 = {
+  firstName:"John",
+  lastName: "Doe"
+}
+const person2 = {
+  firstName:"Mary",
+  lastName: "Doe"
+}
+// This will return "John Doe":
+person.fullName.call(person1);
+person.fullName.apply(person1);
+
+Math.max.apply(null, [1,2,3]);
+
+bind() method borrow a method from another object
+let fullName = person.fullName.bind(member); 
+
+When a function is used as a callback, this is lost.by using following code we can solve the problem
+let display = person.display.bind(person);
+setTimeout(display, 3000);
+
+const closurefn = function () {
+  let counter = 0;
+  const plus=function(){counter++;console.log(counter);}
+  const val=function(){return counter}
+  return {val,plus}
+};
+const counter=closurefn()
+
+IIFE  (function add(a,b){return a+b})(3,8)
+
+let myPromise = new Promise(function(myResolve, myReject) {
+  myResolve(); // when successful
+  myReject();  // when error
+});
+// "Consuming Code" (Must wait for a fulfilled Promise)
+myPromise.then(
+  function(value) { /* code if successful */ },
+  function(error) { /* code if some error */ }
+);
+myPromise
+  .then(handleFulfilledA, handleRejectedA)
+
+myPromise
+  .then(handleFulfilledA)  
+  .catch(handleRejectedA);
+
+The keyword async before a function makes the function return a promise:
+async function myFunction() {
+  return "Hello";
+}
+Is the same as:
+function myFunction() {
+  return Promise.resolve("Hello");
+}
+
+The keyword await before a function makes the function wait for a promise:
+async function myDisplay() {
+  let myPromise = new Promise(function(resolve, reject) {
+    resolve("I love Promise code !!");
+  });
+  document.getElementById("demo").innerHTML = await myPromise;
+}
+myDisplay();
+ 
+Examples of expressions that can be converted to false are:null;NaN;0;empty string ("" or '' or ``);undefined.
+short ciruit evaluation
+a1 = true && true // t && t returns true
+a2 = true && false // t && f returns false
+a3 = false && true // f && t returns false
+a4 = false && (3 === 4) // f && f returns false
+a5 = 'Cat' && 'Dog' // t && t returns "Dog"
+a6 = false && 'Cat' // f && t returns false
+a7 = 'Cat' && false // t && f returns false
+a8 = '' && false // f && f returns ""
+a9 = false && '' // f && f returns false
+
+o1 = true  || true       // t || t returns true
+o2 = false || true       // f || t returns true
+o3 = true  || false      // t || f returns true
+o4 = false || (3 === 4)  // f || f returns false
+o5 = 'Cat' || 'Dog'      // t || t returns "Cat"
+o6 = false || 'Cat'      // f || t returns "Cat"
+o7 = 'Cat' || false      // t || f returns "Cat"
+o8 = ''    || false      // f || f returns false
+o9 = false || ''         // f || f returns ""
+o10 = false || varObject // f || object returns varObject
+
+optional chaining ?. , 
+Nullish operator (??) This can be seen as a special case of the logical OR (||) operator, which returns the right-hand side operand 
+if the left operand is any falsy value(just null/undefined ,doesn't work for other boolean values like 0, NaN, '', false. To handle all boolean values we can use || logical OR)
+
+const adventurer = {
+  name: 'Alice',
+  cat: {
+    name: 'Dinah'
+  }
+};
+const dogName = adventurer.dog?.name ?? "no dog";
+nullish assignment (??=)
+const a = { duration: 50 };
+a.speed ??= 25;
+console.log(a.speed);
+
+Simple Swap 2 values using Destructuring
+let a = 5;
+let b = 8;
+[a,b] = [b,a]
+
+splice
+const fruits = ["Banana", "Orange", "Apple", "Mango", "Kiwi"];
+fruits.splice(2,1)
+
+const arr = [1, 0, 2, '', 3, null, 4];
+const filtered = arr.filter(Boolean); //Boolean global function. [1, 2, 3, 4]
+Convert any value to boolean using !!
+const isPresent = 'yes';
+!!isPresent; // true
+Trim the decimal part using ~~
+
+console.table([{code:1,name:"jhon"},{code:3,name:"momtaz"}])
+
+Array de-duplication
+const numbers = [2, 3, 5, 5, 2];
+console.log([...new Set(numbers)]); // [2, 3, 5] 
+
+element’s dataset
+Use the dataset attribute to access the element’s custom data attributes (data-*).
+
+<div id="user" data-name="Maxwell" data-age="32" data-something="Some Data">
+    Hello Maxwell
+</div>
+
+<script>
+    const user = document.getElementById('user');
+  
+    console.log(user.dataset); 
+    // { name: "Maxwell", age: "32", something: "Some Data" }
+  
+    console.log(user.dataset.name); // "Maxwell"
+    console.log(user.dataset.age); // "32"
+    console.log(user.dataset.something); // "Some Data"
+</script>     
+
+
+
+----
+Generate a random number between two values: const randomNumber = Math.random() * (max - min) + min
+Check if a number is an integer: const isInteger = (num) => num % 1 === 0
+Check if a value is null or undefined: const isNil = (value) => value === null || value === undefined
+Check if a value is a truthy value: const isTruthy = (value) => !!value
+Check if a value is a falsy value: const isFalsy = (value) => !value
+Check if a value is a valid credit card number:
+const isCreditCard = (cc) => {
+  const regex = /(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})/;
+  return regex.test(cc);
+}
+Check if a value is an object: const isObject = (obj) => obj === Object(obj)
+Check if a value is a function: const isFunction = (fn) => typeof fn === 'function'
+Remove Duplicated from Array const removeDuplicates = (arr) => [...new Set(arr)];
+Check if a value is a promise: const isPromise = (promise) => promise instanceof Promise
+Check if a value is a valid email address:
+const isEmail = (email) => {
+  const regex = /(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/;
+  return regex.test(email);
+}
+Check if a string ends with a given suffix: const endsWith = (str, suffix) => str.endsWith(suffix)
+Check if a string starts with a given prefix: const startsWith = (str, prefix) => str.startsWith(prefix)
+Check if a value is a valid URL:
+const isURL = (url) => {
+  const regex = /(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+/;
+  return regex.test(url);
+}
+Check if a value is a valid hexadecimal color code:
+const isHexColor = (hex) => {
+  const regex = /#?([0-9A-Fa-f]{6}|[0-9A-Fa-f]{3})/;
+  return regex.test(hex);
+}
+Check if a value is a valid postal code:
+const isPostalCode = (postalCode, countryCode) => {
+  if (countryCode === 'US') {
+    const regex = /[0-9]{5}(?:-[0-9]{4})?/;
+    return regex.test(postalCode);
+  } else if (countryCode === 'CA') {
+    const regex = /[ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVWXYZ] [0-9][ABCEGHJKLMNPRSTVWXYZ][0-9]/;
+    return regex.test(postalCode.toUpperCase());
+  } else {
+    // Add regex for other country codes as needed
+    return false;
+  }
+}
+Check if a value is a DOM element:
+const isDOMElement = (value) => typeof value === 'object' && value.nodeType === 1 && typeof value.style === 'object' && typeof value.ownerDocument === 'object';
+Check if a value is a valid CSS length (e.g. 10px, 1em, 50%):
+const isCSSLength = (value) => /([-+]?[\d.]+)(%|[a-z]{1,2})/.test(String(value));
+Check if a value is a valid date string (e.g. 2022-09-01, September 1, 2022, 9/1/2022):
+const isDateString = (value) => !isNaN(Date.parse(value));
+Check if a value is a number representing a safe integer (those integers that can be accurately represented in JavaScript): const isSafeInteger = (num) => Number.isSafeInteger(num)
+Check if a value is a valid Crypto address:
+//Ethereum
+const isEthereumAddress = (address) => {
+  const regex = /0x[a-fA-F0-9]{40}/;
+  return regex.test(address);
+}
+
+//bitcoin
+const isBitcoinAddress = (address) => {
+  const regex = /[13][a-km-zA-HJ-NP-Z0-9]{25,34}/;
+  return regex.test(address);
+}
+
+// ripple
+const isRippleAddress = (address) => {
+  const regex = /r[0-9a-zA-Z]{33}/;
+  return regex.test(address);
+}
+Check if a value is a valid RGB color code
+const isRGBColor = (rgb) => {
+  const regex = /rgb\(\s*([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\s*,\s*([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\s*,\s*([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\s*\)/;
+  return regex.test(rgb);
+}
+Quickly create an array of characters from a string:
+const string = "abcdefg";
+const array = [...string];
+
+const original = {a: 1, b: 2, c: 3};
+const mapped = {...Object.keys(original).reduce((obj, key) => ({...obj, [key.toUpperCase()]: original[key]}), {})};
+
+Quickly create an array of numbers from 1 to 10
+const array = [...Array(10).keys()].map(i => i + 1);
+Quickly shuffle an array
+const shuffle = (array) => array.sort(() => Math.random() - 0.5);
+
+Convert an array-like object (such as a NodeList) to an array
+const toArray = (arrayLike) => Array.prototype.slice.call(arrayLike);
+
+Get the difference between two dates
+const dateDiff = (date1, date2) => Math.abs(new Date(date1) - new Date(date2));
+
+Generate a random string of a given length
+const randomString = (length) => {
+  let result = "";
+  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+  return result;
+};
+
+const rateLimit = require(‘express-rate-limit’);
+
+// Apply rate limiting middleware
+const limiter = rateLimit({
+ windowMs: 15 * 60 * 1000, // 15 minutes
+ max: 100, // Maximum 100 requests per window
+});
+
+// Usage
+app.use(‘/api’, limiter); // Apply rate limiting to ‘/api’ routes

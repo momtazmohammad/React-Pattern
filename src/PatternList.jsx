@@ -15,6 +15,7 @@ import RenderPropsPattern from './patterns/RenderPropsPattern.jsx';
 import CompoundComponent from './patterns/compoundComponent/CompoundComponent.jsx';
 import ListPattern from './patterns/listPattern/ListPattern.jsx';
 import StepperOnboardingPattern from './patterns/stepperOnboarding-pattern/StepperOnboardingPattern.jsx';
+import FormPattern from './patterns/formpattern/FormPattern.jsx';
 
 function PatternList() {
 
@@ -163,6 +164,15 @@ function PatternList() {
         </div>
       ),
     },        
+    {
+      value: "16",
+      title: "Form Pattern",
+      content: (        
+        <div style={{ margin: "10px" }}>
+          <FormPattern />
+        </div>
+      ),
+    },        
   ];
   const [pattern, setPattern] = useState(patternList[0]);
   const onChangeOption = (value) => {
@@ -182,16 +192,16 @@ function PatternList() {
   };
   
   return (
-    <>
+    <div>
     <Select
       options={patternList}
       name="Sample"
       lable="عنوان"
       handleChange={onChangeOption}
-      style={{ margin: "10px 50px 10px 20px" }}
+      style={{ margin: "10px 50px 10px 20px" ,maxWidth:"400px"}}
     />
     {patternList.map((item,index) => <div key={index}>{item.value === pattern.value && item.content }</div>)}
-  </>
+  </div>
 
   )
 }

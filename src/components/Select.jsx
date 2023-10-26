@@ -5,15 +5,16 @@ const Select = ({ options, name,lable, handleChange, ...others }) => {
     <div {...others}>
            <div className="form-row">
             <div className="form-col-25">
-              <label htmlFor={name}>{lable}</label>
+              <label >{lable}</label>
             </div>
             <div className="form-col-75">
       <select        
+      style={{padding:"10px"}}
         name={name}
         onChange={({ target }) => handleChange(target.value)}
       >
         {options.map((option) => (
-          <option key={option.value} value={option.value}>
+          <option style={{fontSize:"14px"}} key={option.value} value={option.value}>
             {option.title}
           </option>
         ))}

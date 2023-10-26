@@ -53,8 +53,8 @@ function ObserverPattern() {
           //margin: "5px auto",
           minWidth: "500px",
         }}
-        setOpenSnack={setOpenSnack}
-        openSnack={openSnack}
+        setCloseSnack={()=>setOpenSnack(false)}
+        open={openSnack}
         msg={msg}
         duration={5000}
         severity="success"

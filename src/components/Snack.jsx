@@ -4,23 +4,23 @@ import { useEffect } from "react";
 
 export default function Snack({
   msg,
-  openSnack,
-  setOpenSnack,
+  open,
+  setCloseSnack,
   duration,
   severity,
   ...others
 }) {
   useEffect(() => {
     let timer;
-    if (openSnack) {
+    if (open) {
       timer = setTimeout(() => {
-        setOpenSnack(false);
+        setCloseSnack();
       }, duration);
     }
     return () => {
       clearTimeout(timer);
     };
-  }, [openSnack]);
+  }, [open]);
   const bgcolor = (type) => {
     switch (type) {
       case "error":
@@ -37,10 +37,10 @@ export default function Snack({
         className="snack"
         style={{
           backgroundColor: bgcolor(severity),
-          display: openSnack ? "block" : "none",
+          display: open ? "block" : "none",
         }}
       >
-        <span className="closebtn" onClick={() => setOpenSnack(false)}>
+        <span className="closebtn" onClick={setCloseSnack}>
           &times;
         </span>
         {msg}
