@@ -1,0 +1,18 @@
+.dropDownSelect:hover {
+    cursor: pointer;   
+  }
+  .dropDownList {
+    position: absolute;  
+    background-color: #eee;
+    z-index: 8;
+    border: 1px solid #777;
+    border-radius: 4px;
+  }
+  .dropDown button {
+    background-color: inherit;  
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px;
+    transition: 0.3s;
+  }

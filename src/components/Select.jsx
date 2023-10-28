@@ -1,6 +1,7 @@
 import React from "react";
+import DropDown from "./dropdown/DropDown";
 
-const Select = ({ options, name,lable, handleChange, ...others }) => {
+const Select = ({ options,value, name,lable, handleChange, ...others }) => {
   return (
     <div {...others}>
            <div className="form-row">
@@ -8,7 +9,8 @@ const Select = ({ options, name,lable, handleChange, ...others }) => {
               <label >{lable}</label>
             </div>
             <div className="form-col-75">
-      <select        
+      <DropDown selectColor="#aaaaee" items={options} selected={value} onSelect={({value})=>handleChange(value)} placeHolder="لطفا يكي را انتخاب كنيد"/>              
+      {/* <select        
       style={{padding:"10px"}}
         name={name}
         onChange={({ target }) => handleChange(target.value)}
@@ -18,7 +20,7 @@ const Select = ({ options, name,lable, handleChange, ...others }) => {
             {option.title}
           </option>
         ))}
-      </select>
+      </select> */}
       </div>
       </div>
     </div>

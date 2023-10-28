@@ -175,7 +175,7 @@ function PatternList() {
     },        
   ];
   const [pattern, setPattern] = useState(patternList[0]);
-  const onChangeOption = (value) => {
+  const onChangeOption = (value) => {  
     setPattern(patternList.find((item) => item.value === value));
     if (value === "2") {
       setTodoData({ data: null, isLoading: true });
@@ -195,11 +195,12 @@ function PatternList() {
     <div>
     <Select
       options={patternList}
+      value={pattern}
       name="Sample"
       lable="عنوان"
       handleChange={onChangeOption}
       style={{ margin: "10px 50px 10px 20px" ,maxWidth:"400px"}}
-    />
+    />    
     {patternList.map((item,index) => <div key={index}>{item.value === pattern.value && item.content }</div>)}
   </div>
 
