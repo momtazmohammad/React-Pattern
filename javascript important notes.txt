@@ -33,12 +33,17 @@ How to Recognize an Array(typeof array return object):Array.isArray(fruits);frui
 Array methods
 fruits.sort(); //By default, the sort() function sorts values as strings.You can fix this by providing a compare function: points.sort(function(a, b){return a - b});
 sort an array descending:points.sort(function(a, b){return b - a});
-Sorting an Array in Random Order:points.sort(function(){return 0.5 - Math.random()});
+Sorting an Array in Random Order:points.sort(function(){return 0.5 - Math.random()}); 
 
 Math.max.apply(null, arr);
 numbers.reduce(myFunction):function parameters total, value, index
+[11,4,7,9,6].reduce(function makeObj(ac,v,i) {return {...ac,[i]:v}},{})
+
 The every() method check if all array values pass a test.
 The some() method check if some array values pass a test.
+p=[{code:1,name:"jhon"},{code:2,name:"vahid"}]
+p.some(i=>i.name=="vahid")
+
 fruits.includes("Mango");
 fruits.entries(): returns an Array Iterator object with key/value pairs
 
@@ -207,14 +212,28 @@ let display = person.display.bind(person);
 setTimeout(display, 3000);
 
 const closurefn = function () {
-  let counter = 0;
-  const plus=function(){counter++;console.log(counter);}
-  const val=function(){return counter}
-  return {val,plus}
+  let _counter = 0;
+  const setCounter=function(val){_counter=val;console.log(_counter);}
+  const value=function(){return _counter}
+  return {value,setCounter}
 };
 const counter=closurefn()
 
 IIFE  (function add(a,b){return a+b})(3,8)
+
+HOF
+const divide=(a,b)=>a/b
+const check2ndArg=func=>
+  (...args)=>{
+    if(args[1]===0) {
+      console.log("error divide by 0")
+      return null
+    } 
+      return func(...args)    
+  }
+
+const divideSafe=check2ndArg(divide)
+console.log(divideSafe(12,2))
 
 let myPromise = new Promise(function(myResolve, myReject) {
   myResolve(); // when successful
@@ -444,3 +463,11 @@ const limiter = rateLimit({
 
 // Usage
 app.use(‘/api’, limiter); // Apply rate limiting to ‘/api’ routes
+
+https://umuralpay.com/unveiling-the-power-of-node-js-design-patterns-28a85760faff
+
+first-class function
+functional programming : 
+sepration of data and function
+immutable variables (avoid bugs): data changes in some point of time may cause some bugs which can't be Recognize the problem
+there is no this variable

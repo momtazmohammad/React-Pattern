@@ -15,4 +15,9 @@
     cursor: pointer;
     padding: 14px;
     transition: 0.3s;
+    text-align: left;
+  }
+  input:focus{
+    outline: none;
+    border: none;
   }
