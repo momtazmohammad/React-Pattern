@@ -16,6 +16,9 @@ import CompoundComponent from './patterns/compoundComponent/CompoundComponent.js
 import ListPattern from './patterns/listPattern/ListPattern.jsx';
 import StepperOnboardingPattern from './patterns/stepperOnboarding-pattern/StepperOnboardingPattern.jsx';
 import FormPattern from './patterns/formpattern/FormPattern.jsx';
+import ComboBoxApp from './ComboBoxApp.jsx';
+import ComboBoxDebounceApp from './ComboBoxDebounceApp.jsx';
+import DataGridApp from './DataGridApp.jsx';
 
 function PatternList() {
 
@@ -173,6 +176,27 @@ function PatternList() {
         </div>
       ),
     },        
+    {
+      value: "17",
+      title: "Combo Box Component",
+      content: (        
+        <div style={{ margin: "10px" }}>
+                <ComboBoxApp style={{ margin: "5px" }} />
+      <ComboBoxDebounceApp style={{ margin: "5px" }} />
+
+        </div>
+      ),
+    },        
+    {
+      value: "18",
+      title: "Data Grid Component",
+      content: (        
+        <div style={{ margin: "10px" }}>
+      <DataGridApp style={{ margin: "5px" }} />
+
+        </div>
+      ),
+    },        
   ];
   const [pattern, setPattern] = useState(patternList[0]);
   const onChangeOption = (value) => {  
@@ -194,6 +218,7 @@ function PatternList() {
   return (
     <div>
     <Select
+      className="no-print"
       options={patternList}
       value={pattern}
       name="Sample"

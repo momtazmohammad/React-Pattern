@@ -1,0 +1,98 @@
+.button-text {    
+    background-color: "#eee";
+    border: none;
+    color: "#777";
+    padding: 10px 16px;
+    font-size: 16px;
+    cursor: pointer;    
+  }
+  .dialog-form {
+    position:absolute;       
+    right: 0px; 
+    top: 0px;  
+    z-index: 8;          
+    overflow: auto;    
+  }
+  
+  /* Modal Content/Box */
+  .dialog-form-content {
+    background-color: #fefefe;
+    margin: 10%;
+    padding: 20px;
+    border: 1px solid #888;
+  }
+  .row-hover tr:hover {
+    background-color: #bbb;
+  }
+
+  .table-container {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 50%;    
+  }
+.table-th {
+    background-color: #666;
+    color:#eee;
+    text-align: center;
+    padding: 8px;
+    border: 1px solid #ccc;
+  }
+  .table-td {    
+    padding: 8px;
+    border: 1px solid #ccc;
+  }
+  
+.table-tr:nth-child(even) {
+    background-color: #e2e2e2;
+  }
+
+  @media screen {
+    .no-screen {
+      display: none;
+    }  
+  }
+  @media print {
+    td {
+      word-break: break-all;
+    }
+  
+    body {
+      font-family: Tahoma, Verdana, sans-serif;
+      font-size: 13px;
+    }
+  
+    .no-print {
+      display: none;
+    }
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+  .table-td  {    
+    color:#333;    
+    padding: 8px;
+    border: 1px solid #444;
+  }
+  
+  .table-th {    
+      color:#333;    
+      padding: 8px;
+      border: 1px solid #444;
+    }
+  
+    .landscape-style {
+      @page {
+        size: A4 landscape;
+        margin: 1mm;
+      }
+    }
+  
+    .portrait-style {
+      @page {
+        size: A4 portrait;
+        margin: 1mm;
+      }
+    }
+  
+    }
+  

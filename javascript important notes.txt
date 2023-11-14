@@ -221,6 +221,12 @@ const counter=closurefn()
 
 IIFE  (function add(a,b){return a+b})(3,8)
 
+setTimeout(code)
+setTimeout(code, delay)
+setTimeout(functionRef)
+setTimeout(functionRef, delay)
+setTimeout(functionRef, delay, param1, param2, /* …, */ paramN)
+
 HOF
 const divide=(a,b)=>a/b
 const check2ndArg=func=>
@@ -268,6 +274,15 @@ async function myDisplay() {
   document.getElementById("demo").innerHTML = await myPromise;
 }
 myDisplay();
+
+The Promise.all() static method takes an iterable of promises as input and returns a single Promise.
+This returned promise fulfills when all of the input's promises fulfill (including when an empty iterable is passed), with an array of the fulfillment values. It rejects when any of the input's promises rejects, with this first rejection reason.
+Promise.all(iterable)
+Promise.all([promise1, promise2, promise3]).then((values) => {
+  console.log(values);
+});
+// Expected output: Array of values
+
  
 Examples of expressions that can be converted to false are:null;NaN;0;empty string ("" or '' or ``);undefined.
 short ciruit evaluation
@@ -465,6 +480,8 @@ const limiter = rateLimit({
 app.use(‘/api’, limiter); // Apply rate limiting to ‘/api’ routes
 
 https://umuralpay.com/unveiling-the-power-of-node-js-design-patterns-28a85760faff
+
+not use toLocaleDateString
 
 first-class function
 functional programming : 
