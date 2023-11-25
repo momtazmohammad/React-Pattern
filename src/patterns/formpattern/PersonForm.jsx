@@ -1,6 +1,7 @@
 import React, {  useState } from "react";
 import "./index.css";
 import FormField from "./FormField";
+import { validationCheck } from "./validationCheck";
 
 export default function PersonForm({ person,onChange,onSubmit,onClose }) {
   
@@ -9,39 +10,16 @@ export default function PersonForm({ person,onChange,onSubmit,onClose }) {
     lastname: "",
     age: "",
   });
+  const vldCheck={
+    firstname:[value=>!value?"لطفا فیلد مربوطه تکمیل گردد":"",value=>value.length<10?"طول فيلد بايد بزگتر از 10 حرف باشد":""],
+    lastname:[value=>!value?"لطفا فیلد مربوطه تکمیل گردد":""],
+    age:[value=>value<20?"سن بايد بزرگتر از 19 سال باشد":""]
+  }
   
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let vld = true;
-    for (const fld in errors) {
-      switch (fld) {
-        case "firstname":
-        case "lastname":
-          if (!person[fld]) {
-            vld = false;
-            setErrors((errors) => ({
-              ...errors,
-              [fld]: "لطفا فیلد مربوطه تکمیل گردد",
-            }));
-          } else {
-            setErrors((errors) => ({ ...errors, [fld]: "" }));
-          }
-          break;
-        case "age":
-          if (person[fld] < 20) {
-            vld = false;
-            setErrors((errors) => ({
-              ...errors,
-              [fld]: "سن بايد بزرگتر از 19 سال باشد",
-            }));
-          } else {
-            setErrors((errors) => ({ ...errors, [fld]: "" }));
-          }
-          break;
-        default:
-      }
-    }
-    if (vld) {
+
+    if (validationCheck(errors, setErrors,vldCheck,person)) {
       onSubmit();
     }
   };
@@ -60,6 +38,7 @@ export default function PersonForm({ person,onChange,onSubmit,onClose }) {
           <div className="form-row">
             <div className="form-col-25">
               <label >age</label>
+              
             </div>
             <div className="form-col-75">
               <input

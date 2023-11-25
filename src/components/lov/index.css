@@ -1,0 +1,53 @@
+.search-button {    
+    padding: 5px;
+    font-size: 16px;
+    cursor: pointer;    
+  }
+  
+  .search-input {
+    padding: 6px;        
+    
+  }
+
+  .close-button {
+    margin-left: 15px;
+    color:#333;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+
+  .row-hover tr:hover {
+    background-color: #bbb;
+    cursor: pointer;    
+  }
+
+  .list-row:hover {
+    background-color: #bbb;
+    cursor: pointer;    
+  }
+
+  .table-container {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 50%;    
+  }
+.table-th {
+    background-color: #666;
+    color:#eee;
+    text-align: center;
+    padding: 8px;
+    border: 1px solid #ccc;
+  }
+  .table-td {    
+    padding: 8px;
+    border: 1px solid #ccc;
+  }
+  
+.table-tr:nth-child(even) {
+    background-color: #e2e2e2;
+  }

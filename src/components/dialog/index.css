@@ -1,0 +1,27 @@
+.dlg-form {
+    position:absolute;       
+    z-index: 8;          
+    top:0;
+    overflow: auto;    
+  }
+  
+  /* Modal Content/Box */
+  .dlg-form-content {
+    background-color: #fefefe;    
+    padding: 20px;
+    border: 1px solid #888;
+  }
+  .dlg-container {    
+    position:absolute;       
+    z-index: 8;          
+    top:20px;
+    left: 20px;
+    overflow: auto;    
+  }
+   
+  .dlg-dragger {
+    background-color: inherit;
+    cursor: pointer;    
+    font-size: 0.5rem;            
+  }
+  

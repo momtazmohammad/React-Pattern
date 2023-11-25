@@ -266,6 +266,8 @@ function myFunction() {
   return Promise.resolve("Hello");
 }
 
+return Promise.reject(err)
+
 The keyword await before a function makes the function wait for a promise:
 async function myDisplay() {
   let myPromise = new Promise(function(resolve, reject) {
@@ -274,6 +276,14 @@ async function myDisplay() {
   document.getElementById("demo").innerHTML = await myPromise;
 }
 myDisplay();
+
+  const hash = await new Promise((resolve, reject) => {
+        bcrypt.hash(req.body.userpass, saltRounds, function (err, hash) {
+          if (err) reject(err);
+          resolve(hash);
+        });
+      });
+      user.userpass = hash;
 
 The Promise.all() static method takes an iterable of promises as input and returns a single Promise.
 This returned promise fulfills when all of the input's promises fulfill (including when an empty iterable is passed), with an array of the fulfillment values. It rejects when any of the input's promises rejects, with this first rejection reason.
@@ -285,7 +295,7 @@ Promise.all([promise1, promise2, promise3]).then((values) => {
 
  
 Examples of expressions that can be converted to false are:null;NaN;0;empty string ("" or '' or ``);undefined.
-short ciruit evaluation
+short circuit evaluation
 a1 = true && true // t && t returns true
 a2 = true && false // t && f returns false
 a3 = false && true // f && t returns false
@@ -488,3 +498,9 @@ functional programming :
 sepration of data and function
 immutable variables (avoid bugs): data changes in some point of time may cause some bugs which can't be Recognize the problem
 there is no this variable
+.slice().sort() return a copy of the array and sort it, an original array kept intact
+
+https://www.dofactory.com/javascript/design-patterns/chain-of-responsibility#:~:text=The%20Chain%20of%20Responsibility%20pattern,can%20handle%20a%20particular%20request.
+
+npm i -D typescript
+npx tsc example.ts
