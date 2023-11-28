@@ -41,7 +41,7 @@ numbers.reduce(myFunction):function parameters total, value, index
 
 The every() method check if all array values pass a test.
 The some() method check if some array values pass a test.
-p=[{code:1,name:"jhon"},{code:2,name:"vahid"}]
+p=[{code:1,name:"john"},{code:2,name:"vahid"}]
 p.some(i=>i.name=="vahid")
 
 fruits.includes("Mango");
@@ -69,7 +69,7 @@ for (const num of myNumbers) {
   console.log(num)
 }
 
-myObj = {code:10,name:"jhon"};
+myObj = {code:10,name:"john"};
 myObj[Symbol.iterator] = function() {
   let n = 0;
   let keys=Object.keys(myObj)
@@ -241,6 +241,9 @@ const check2ndArg=func=>
 const divideSafe=check2ndArg(divide)
 console.log(divideSafe(12,2))
 
+Promise is an object that will produce a single value some time in the future.
+If the promise is successful, it will produce a resolved value, but if something goes wrong then it will produce a reason why the promise failed.
+
 let myPromise = new Promise(function(myResolve, myReject) {
   myResolve(); // when successful
   myReject();  // when error
@@ -277,6 +280,7 @@ async function myDisplay() {
 }
 myDisplay();
 
+try {
   const hash = await new Promise((resolve, reject) => {
         bcrypt.hash(req.body.userpass, saltRounds, function (err, hash) {
           if (err) reject(err);
@@ -284,6 +288,10 @@ myDisplay();
         });
       });
       user.userpass = hash;
+}
+catch(err){
+  console.log(err)
+}
 
 The Promise.all() static method takes an iterable of promises as input and returns a single Promise.
 This returned promise fulfills when all of the input's promises fulfill (including when an empty iterable is passed), with an array of the fulfillment values. It rejects when any of the input's promises rejects, with this first rejection reason.
@@ -295,6 +303,7 @@ Promise.all([promise1, promise2, promise3]).then((values) => {
 
  
 Examples of expressions that can be converted to false are:null;NaN;0;empty string ("" or '' or ``);undefined.
+
 short circuit evaluation
 a1 = true && true // t && t returns true
 a2 = true && false // t && f returns false
@@ -349,7 +358,7 @@ const isPresent = 'yes';
 !!isPresent; // true
 Trim the decimal part using ~~
 
-console.table([{code:1,name:"jhon"},{code:3,name:"momtaz"}])
+console.table([{code:1,name:"john"},{code:3,name:"momtaz"}])
 
 Array de-duplication
 const numbers = [2, 3, 5, 5, 2];
@@ -455,7 +464,7 @@ const string = "abcdefg";
 const array = [...string];
 
 const original = {a: 1, b: 2, c: 3};
-const mapped = {...Object.keys(original).reduce((obj, key) => ({...obj, [key.toUpperCase()]: original[key]}), {})};
+const mapped = {Object.keys(original).reduce((obj, key) => ({...obj, [key.toUpperCase()]: original[key]}), {})};
 
 Quickly create an array of numbers from 1 to 10
 const array = [...Array(10).keys()].map(i => i + 1);
@@ -492,15 +501,35 @@ app.use(‘/api’, limiter); // Apply rate limiting to ‘/api’ routes
 https://umuralpay.com/unveiling-the-power-of-node-js-design-patterns-28a85760faff
 
 not use toLocaleDateString
+import { gregorianToJalali } from "./lib/jalaliDate";
+const DateGtoJ = (pDate) => {
+    const gDateAr = new Date(pDate).toISOString().substring(0, 10).split("-");
+    return gregorianToJalali(gDateAr[0], gDateAr[1], gDateAr[2], true);
+  };
 
 first-class function
 functional programming : 
 sepration of data and function
 immutable variables (avoid bugs): data changes in some point of time may cause some bugs which can't be Recognize the problem
-there is no this variable
+there is no (this) variable
 .slice().sort() return a copy of the array and sort it, an original array kept intact
 
 https://www.dofactory.com/javascript/design-patterns/chain-of-responsibility#:~:text=The%20Chain%20of%20Responsibility%20pattern,can%20handle%20a%20particular%20request.
 
 npm i -D typescript
 npx tsc example.ts
+
+class EMP {
+  constructor(first,last){
+    this.first=first;
+    this.last=last;
+  }
+  get fullName() {
+    return this.first+this.last
+  }
+  fullnm(){
+    return this.first+this.last
+  }
+}
+for (const i in values)
+for (const i of values) values should be iterable
