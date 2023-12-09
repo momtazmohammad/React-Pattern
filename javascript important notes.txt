@@ -533,3 +533,52 @@ class EMP {
 }
 for (const i in values)
 for (const i of values) values should be iterable
+
+const hero = {
+
+  name: 'Batman',
+
+  city: 'Gotham'  ,
+
+age:"18"
+
+};
+
+const { ...clone } = hero; //rest operator
+const { enemies } = hero;
+
+const {age,...heroClone}=hero
+
+console.log(clone,age,heroClone)
+
+console.log('name' in hero);
+
+const prop = 'name';
+
+const { [prop]: firstname } = hero;
+
+console.log(firstname); // => 'Batman'
+
+const persons = [
+
+  { name: 'John Smith' },
+
+  { name: 'Jane Doe' }
+
+];
+
+for (const { name } of persons) {
+
+  console.log(name);
+
+}
+
+b=3
+
+Console.log({b})
+
+const user = 'john_smith';
+
+const attempts = 5;
+
+console.log('%s failed to login %i times', user, attempts);
