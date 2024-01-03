@@ -241,6 +241,8 @@ const check2ndArg=func=>
 const divideSafe=check2ndArg(divide)
 console.log(divideSafe(12,2))
 
+
+
 Promise is an object that will produce a single value some time in the future.
 If the promise is successful, it will produce a resolved value, but if something goes wrong then it will produce a reason why the promise failed.
 
@@ -582,3 +584,68 @@ const user = 'john_smith';
 const attempts = 5;
 
 console.log('%s failed to login %i times', user, attempts);
+
+const array = [ 'fatfish', 'medium', 'blog', 'fat', 'fish' ]
+console.log(array.at(-1)) // fish
+console.log(array.at(-2)) // fat
+console.log(array.at(-3)) // blog
+
+pipeline
+
+socket.io
+
+Dependency Injection:
+------- code without Dependency Injection
+const db = require('./db');
+
+class UserRepo{
+    getUsers(){
+        return db.query('SELECT * FROM users');
+    }
+}
+------- code with Dependency Injection
+class UserRepo{
+    constructor(db){
+        this._db = db;
+    }
+
+    getUsers(){
+        return this._db.query('SELECT * FROM users');
+    }
+}
+// Database.js
+class Database{
+    constructor(config){
+        this.config = config;
+    }
+
+    connect(){
+        // create database
+    }
+    query(){
+    }
+}
+
+// config.js
+const config = {
+    DB_CONFIG_MYSQL: {
+        server: process.env.DB_SERVER,
+        database: process.env.DB_NAME,
+        user: process.env.DB_USER,
+        password: process.env.DB_PW
+    },
+    DB_CONFIG_POSTGRES: {
+        // ...
+    }
+};
+
+// index.js
+const config = require('./config');
+const Database = require('./Database');
+const UserRepo = require('./UserRepo');
+
+let db = new Database(config.DB_CONFIG_MYSQL);
+db.connect();
+let userRepo = new UserRepo(db);
+
+aws lambda serverless FaaS

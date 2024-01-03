@@ -28,6 +28,7 @@ import Button from "./components/button/Button.jsx";
 import LovDialogVirtualize from "./components/lov/LovDialogVirtualize.jsx";
 import LovDialog from "./components/lov/LovDialog.jsx";
 import LovDialogResizable from "./components/lov/LovDialogResizable.jsx";
+import Chat from "./components/chat/Chat.jsx";
 
 function PatternList() {  
   const fields=[
@@ -273,6 +274,15 @@ function PatternList() {
               selectedLovItem?.lastname ?? ""
             }`}
           </div>
+        </div>
+      ),
+    },
+    {
+      value: "20",
+      title: "Chat Component",
+      content: (
+        <div style={{ margin: "10px" }}>
+          <Chat />
         </div>
       ),
     },
