@@ -649,3 +649,93 @@ db.connect();
 let userRepo = new UserRepo(db);
 
 aws lambda serverless FaaS
+---------------------------------
+Parallel Data Requests
+const Profile = ({ id }: { id: string }) => {
+  const [user, setUser] = useState<User | undefined>();
+
+  useEffect(() => {
+    const fetchUser = async () => {
+        const data = await get<User>(`/users/${id}`);
+        setUser(data);
+    };
+    fetchUser();
+  }, [id]);
+
+  return (
+    <>
+      {user && <About user={user} />}
+      <Friends id={id} />
+    </>
+  );
+};
+
+const Friends = ({ id }: { id: string }) => {
+  const [users, setUsers] = useState<User[]>([]);
+
+  useEffect(() => {
+    const fetchFriends = async () => {
+        const data = await get<User[]>(`/users/${id}/friends`);
+        setUsers(data);
+    };
+    fetchFriends();
+  }, [id]);
+
+  return (
+    <div>
+      <h2>Friends</h2>
+      <div>
+        {users.map((user) => (
+            <Friend key={user.id} user={user} />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+We could simply modify the code to request data all together in Profile:
+const Profile = ({ id }: { id: string }) => {
+  const [user, setUser] = useState<User | undefined>();
+  const [friends, setFriends] = useState<User[]>([]);
+
+  useEffect(() => {
+    const fetchUserAndFriends = async () => {
+        const [user, friends] = await Promise.all([
+          get<User>(`/users/${id}`),
+          get<User[]>(`/users/${id}/friends`),
+        ]);
+        setUser(user);
+        setFriends(friends);
+    };
+    fetchUserAndFriends();
+  }, [id]);
+
+  return (
+    <>
+      {user && <About user={user} />}
+      <Friends users={friends} />
+    </>
+  );
+};
+---------
+Lazy Load + Suspense (Code Split)
+This method drastically reduces the initial load time by ensuring that users download only the essential code at first. Suspense acts as a placeholder for your components or data until the required code chunk or data is loaded.
+const UserDetailCard = React.lazy(() => import("./user-detail-card.tsx"));
+
+export const Friend = ({ user }: { user: User }) => {
+  return (
+    <Popover placement="bottom" showArrow offset={10}>
+      <PopoverTrigger>
+        <button>
+          <Brief user={user} />
+        </button>
+      </PopoverTrigger>
+      <PopoverContent>
+        <Suspense fallback={<div>Loading...</div>}>
+          <UserDetailCard id={user.id} />
+        </Suspense>
+      </PopoverContent>
+    </Popover>
+  );
+};
+
