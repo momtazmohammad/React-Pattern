@@ -739,3 +739,96 @@ export const Friend = ({ user }: { user: User }) => {
   );
 };
 
+-----------
+class PubSub {
+  constructor() {
+    this.subscribers = {};
+  }
+
+  subscribe(event, callback) {
+    if (!this.subscribers[event]) {
+      this.subscribers[event] = [];
+    }
+
+    this.subscribers[event].push(callback);
+  }
+
+  // Publish a message to all subscribers of a specific event
+  publish(event, data) {
+    if (this.subscribers[event]) {
+      this.subscribers[event].forEach((callback) => {
+        callback(data);
+      });
+    }
+  }
+}
+
+const pubsub = new PubSub();
+
+pubsub.subscribe('news', (message) => {
+  console.log(`Subscriber 1 received news: ${message}`);
+});
+
+pubsub.subscribe('news', (message) => {
+  console.log(`Subscriber 2 received news: ${message}`);
+});
+
+// Publish a message to the 'news' event
+pubsub.publish('news', 'Latest headlines: ...');
+
+// console logs are:
+// Subscriber 1 received news: Latest headlines: ...
+// Subscriber 2 received news: Latest headlines: ...
+----------
+class Subject {
+  constructor() {
+    this.observers = [];
+  }
+
+  addObserver(observer) {
+    this.observers.push(observer);
+  }
+
+  // Remove an observer from the list
+  removeObserver(observer) {
+    const index = this.observers.indexOf(observer);
+
+    if (index !== -1) {
+      this.observers.splice(index, 1);
+    }
+  }
+
+  // Notify all observers about changes
+  notify() {
+    this.observers.forEach((observer) => {
+      observer.update();
+    });
+  }
+}
+
+class Observer {
+  constructor(name) {
+    this.name = name;
+  }
+
+  // Update method called when notified
+  update() {
+    console.log(`${this.name} received an update.`);
+  }
+}
+
+const subject = new Subject();
+const observer1 = new Observer('Observer 1');
+const observer2 = new Observer('Observer 2');
+
+// Add observers to the subject
+subject.addObserver(observer1);
+subject.addObserver(observer2);
+
+// Notify observers about changes
+subject.notify();
+
+// console logs are:
+// Observer 1 received an update.
+// Observer 2 received an update.
+-------------
